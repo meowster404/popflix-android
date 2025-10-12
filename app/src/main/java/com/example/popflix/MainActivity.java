@@ -1,4 +1,4 @@
-package com.example.popflix.details;
+package com.example.popflix;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

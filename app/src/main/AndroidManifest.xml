@@ -39,7 +39,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".details.DetailsActivity"
+            android:name=".DetailsActivity"
             android:exported="false" />
 
         <activity
