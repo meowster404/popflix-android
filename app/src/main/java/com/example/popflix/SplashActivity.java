@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.popflix.auth.AuthActivity;
 import com.example.popflix.home.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 

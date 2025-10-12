@@ -1,4 +1,4 @@
-package com.example.popflix.auth;
+package com.example.popflix;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +39,7 @@ public class SignupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.signupButton.setOnClickListener(v -> registerUser());
-        binding.switchToLoginButton.setOnClickListener(v -> ((AuthActivity) getActivity()).loadFragment(new LoginFragment()));
+        binding.switchToLoginButton.setOnClickListener(v -> ((AuthActivity) requireActivity()).loadFragment(new LoginFragment()));
 
         // Secret anonymous login trigger
         binding.signupTitle.setOnClickListener(v -> {
@@ -69,7 +69,7 @@ public class SignupFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), task -> {
+                .addOnCompleteListener(requireActivity(), task -> {
                     if (task.isSuccessful()) {
                         String userId = mAuth.getCurrentUser().getUid();
                         // Store additional user info in Firestore
@@ -98,7 +98,7 @@ public class SignupFragment extends Fragment {
     private void signInAnonymously() {
         binding.progressBar.setVisibility(View.VISIBLE);
         mAuth.signInAnonymously()
-                .addOnCompleteListener(getActivity(), task -> {
+                .addOnCompleteListener(requireActivity(), task -> {
                     binding.progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         NotificationUtils.showToast(getContext(), "Signed in as Guest.");
@@ -112,7 +112,7 @@ public class SignupFragment extends Fragment {
     private void navigateToHome() {
         Intent intent = new Intent(getActivity(), HomeActivity.class);
         startActivity(intent);
-        getActivity().finish();
+        requireActivity().finish();
     }
 
     @Override

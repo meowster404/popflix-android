@@ -1,7 +1,5 @@
 package com.example.popflix;
 
-import com.example.popflix.network.ApiService;
-import com.example.popflix.BuildConfig;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

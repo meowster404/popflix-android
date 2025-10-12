@@ -1,4 +1,4 @@
-package com.example.popflix.auth;
+package com.example.popflix;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import com.example.popflix.databinding.FragmentLoginBinding;
 import com.example.popflix.home.HomeActivity;
 import com.example.popflix.utils.NotificationUtils;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
 
@@ -34,7 +33,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.loginButton.setOnClickListener(v -> loginUser());
-        binding.switchToSignupButton.setOnClickListener(v -> ((AuthActivity) getActivity()).loadFragment(new SignupFragment()));
+        binding.switchToSignupButton.setOnClickListener(v -> ((AuthActivity) requireActivity()).loadFragment(new SignupFragment()));
 
         // Secret anonymous login trigger
         binding.loginTitle.setOnClickListener(v -> {
@@ -57,7 +56,7 @@ public class LoginFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), task -> {
+                .addOnCompleteListener(requireActivity(), task -> {
                     binding.progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         NotificationUtils.showToast(getContext(), "Login Successful.");
@@ -71,9 +70,9 @@ public class LoginFragment extends Fragment {
     private void signInAnonymously() {
         binding.progressBar.setVisibility(View.VISIBLE);
         mAuth.signInAnonymously()
-                .addOnCompleteListener(getActivity(), task -> {
+                .addOnCompleteListener(requireActivity(), task -> {
                     binding.progressBar.setVisibility(View.GONE);
-                    if (task.isSuccessful()) {
+                    if (task..isSuccessful()) {
                         NotificationUtils.showToast(getContext(), "Signed in as Guest.");
                         navigateToHome();
                     } else {
@@ -83,9 +82,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void navigateToHome() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        Intent intent = new Intent(requireActivity(), HomeActivity.class);
         startActivity(intent);
-        getActivity().finish();
+        requireActivity().finish();
     }
 
     @Override

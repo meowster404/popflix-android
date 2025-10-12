@@ -1,4 +1,4 @@
-package com.example.popflix.model;
+package com.example.popflix;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
