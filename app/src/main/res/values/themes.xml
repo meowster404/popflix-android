@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PopFlix" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/brand_red</item>
+        <item name="colorPrimaryVariant">@color/brand_red_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorSecondaryVariant">@color/accent_blue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/dark_background</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/dark_background</item>
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.PopFlix.Splash" parent="Theme.PopFlix">
+        <item name="android:windowBackground">@layout/activity_splash</item>
+        <item name="android:statusBarColor">@color/dark_background</item>
+    </style>
+</resources>
