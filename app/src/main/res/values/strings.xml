@@ -19,4 +19,11 @@
     <string name="profile">Profile</string>
     <string name="more_info">More Info</string>
     <string name="watch_trailer">Watch Trailer</string>
+    <string name="add_to_watchlist">Add to Watchlist</string>
+    <string name="remove_from_watchlist">Remove from Watchlist</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="my_watchlist">My Watchlist</string>
+    <string name="no_movies_in_watchlist">No movies in your watchlist yet</string>
+    <string name="watchlist_empty_message">Start adding movies to your watchlist to see them here!</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -1,17 +1,19 @@
 package com.example.popflix;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.popflix.databinding.ActivityMainBinding;
+import android.content.Context;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+public class NotificationUtils {
+    
+    public static void showToast(Context context, String message) {
+        if (context != null) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+    
+    public static void showToast(Context context, String message, int duration) {
+        if (context != null) {
+            Toast.makeText(context, message, duration).show();
+        }
     }
 }

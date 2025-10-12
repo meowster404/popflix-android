@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.popflix.databinding.FragmentLoginBinding;
 import com.example.popflix.home.HomeActivity;
-import com.example.popflix.utils.NotificationUtils;
+import com.example.popflix.NotificationUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginFragment extends Fragment {
@@ -72,7 +72,7 @@ public class LoginFragment extends Fragment {
         mAuth.signInAnonymously()
                 .addOnCompleteListener(requireActivity(), task -> {
                     binding.progressBar.setVisibility(View.GONE);
-                    if (task..isSuccessful()) {
+                    if (task.isSuccessful()) {
                         NotificationUtils.showToast(getContext(), "Signed in as Guest.");
                         navigateToHome();
                     } else {

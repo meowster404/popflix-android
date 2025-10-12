@@ -42,6 +42,10 @@
             android:name=".DetailsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".WatchlistActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "711247539554",
+    "project_id": "popflix-fa92d",
+    "storage_bucket": "popflix-fa92d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711247539554:android:032d6028c7d514fbb3103b",
+        "android_client_info": {
+          "package_name": "com.example.popflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711247539554-maltehajhf8mftnllhkklo1hsr02gvrd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1sNorLeQxKLLV2xzW_CeLPfCY9kdbHdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711247539554-maltehajhf8mftnllhkklo1hsr02gvrd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
