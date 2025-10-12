@@ -20,8 +20,6 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setupToolbar();
-
-        // Example data - In a real app, you would pass a movie ID and fetch data
         populateUiWithExampleData();
     }
 
@@ -34,7 +32,6 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void populateUiWithExampleData() {
-        // This is placeholder data. You would fetch this from your ViewModel/Repository.
         binding.collapsingToolbar.setTitle("Example Movie Title");
         binding.movieTitle.setText("Example Movie Title");
         binding.movieYear.setText("2025 • ");
@@ -43,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         binding.moviePlot.setText("This is a compelling plot summary that entices the user to watch the trailer. It details the exciting premise and introduces the main characters and the central conflict they will face on their epic journey.");
 
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w1280/fqv8v6AycXbS7exX7wbxIIzT6A2.jpg") // Example backdrop
+                .load("https://image.tmdb.org/t/p/w1280/fqv8v6AycXbS7exX7wbxIIzT6A2.jpg")
                 .into(binding.backdropImage);
 
         List<String> genres = Arrays.asList("Action", "Sci-Fi", "Adventure");

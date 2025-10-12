@@ -1,47 +1,17 @@
-package com.example.popflix.model;
+package com.example.popflix;
 
-import com.google.gson.annotations.SerializedName;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.popflix.databinding.ActivityMainBinding;
 
-public class Movie {
-    @SerializedName("id")
-    private int id;
+public class MainActivity extends AppCompatActivity {
 
-    @SerializedName("title")
-    private String title;
+    private ActivityMainBinding binding;
 
-    @SerializedName("overview")
-    private String overview;
-
-    @SerializedName("poster_path")
-    private String posterPath;
-
-    @SerializedName("backdrop_path")
-    private String backdropPath;
-
-    @SerializedName("vote_average")
-    private double voteAverage;
-
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    public double getVoteAverage() {
-        return voteAverage;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }
