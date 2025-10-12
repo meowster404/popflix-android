@@ -1,23 +1,33 @@
-package com.example.popflix.network;
+package com.example.popflix.model;
 
-import com.example.popflix.model.Movie;
-import com.example.popflix.model.MovieResponse;
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+public class Movie {
+    private String title;
+    private String poster_path;
+    private String overview;
+    // Add other fields like id, release_date, etc., as needed.
 
-public interface ApiService {
+    // Getters and setters for the fields
+    public String getTitle() {
+        return title;
+    }
 
-    @GET("movie/popular")
-    Call<MovieResponse> getPopularMovies(@Query("page") int page);
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    @GET("movie/top_rated")
-    Call<MovieResponse> getTopRatedMovies(@Query("page") int page);
+    public String getPosterPath() {
+        return poster_path;
+    }
 
-    @GET("movie/upcoming")
-    Call<MovieResponse> getUpcomingMovies(@Query("page") int page);
+    public void setPosterPath(String poster_path) {
+        this.poster_path = poster_path;
+    }
 
-    @GET("movie/{movie_id}")
-    Call<Movie> getMovieDetails(@Path("movie_id") int movieId);
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
 }
