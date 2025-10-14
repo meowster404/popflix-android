@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.popflix" />
+                  <option name="mobileSdkAppId" value="1:711247539554:android:032d6028c7d514fbb3103b" />
+                  <option name="projectId" value="popflix-fa92d" />
+                  <option name="projectNumber" value="711247539554" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

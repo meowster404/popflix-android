@@ -36,6 +36,10 @@ public class WatchlistManager {
      * Add a movie to the user's watchlist
      */
     public void addToWatchlist(String userId, Movie movie, WatchlistCallback callback) {
+        if (userId == null || movie == null) {
+            callback.onError("Invalid parameters");
+            return;
+        }
         DocumentReference watchlistRef = db.collection(WATCHLIST_COLLECTION).document(userId);
         
         // First check if the movie is already in the watchlist
@@ -70,6 +74,10 @@ public class WatchlistManager {
      * Remove a movie from the user's watchlist
      */
     public void removeFromWatchlist(String userId, int movieId, WatchlistCallback callback) {
+        if (userId == null) {
+            callback.onError("User ID cannot be null");
+            return;
+        }
         DocumentReference watchlistRef = db.collection(WATCHLIST_COLLECTION).document(userId);
         
         watchlistRef.get().addOnCompleteListener(task -> {
@@ -104,6 +112,10 @@ public class WatchlistManager {
      * Check if a movie is in the user's watchlist
      */
     public void isMovieInWatchlist(String userId, int movieId, WatchlistCallback callback) {
+        if (userId == null) {
+            callback.onError("User ID cannot be null");
+            return;
+        }
         DocumentReference watchlistRef = db.collection(WATCHLIST_COLLECTION).document(userId);
         
         watchlistRef.get().addOnCompleteListener(task -> {
@@ -136,6 +148,10 @@ public class WatchlistManager {
      * Get all movies from the user's watchlist
      */
     public void getWatchlistMovies(String userId, WatchlistMoviesCallback callback) {
+        if (userId == null) {
+            callback.onError("User ID cannot be null");
+            return;
+        }
         DocumentReference watchlistRef = db.collection(WATCHLIST_COLLECTION).document(userId);
         
         watchlistRef.get().addOnCompleteListener(task -> {
@@ -168,6 +184,10 @@ public class WatchlistManager {
      * Get watchlist count
      */
     public void getWatchlistCount(String userId, WatchlistCallback callback) {
+        if (userId == null) {
+            callback.onError("User ID cannot be null");
+            return;
+        }
         DocumentReference watchlistRef = db.collection(WATCHLIST_COLLECTION).document(userId);
         
         watchlistRef.get().addOnCompleteListener(task -> {

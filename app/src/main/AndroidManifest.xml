@@ -31,7 +31,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".auth.AuthActivity"
+            android:name=".AuthActivity"
             android:exported="false" />
 
         <activity
@@ -41,6 +41,11 @@
         <activity
             android:name=".DetailsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".TrailerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PopFlix.FullScreen" />
 
         <activity
             android:name=".WatchlistActivity"

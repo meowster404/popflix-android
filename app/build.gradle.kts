@@ -14,6 +14,8 @@ android {
         targetSdk = 34
         versionCode = 1
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        // API key is now read from .env file at runtime
     }
 
     buildTypes {
@@ -34,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 

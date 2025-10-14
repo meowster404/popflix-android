@@ -2,14 +2,15 @@ package com.example.popflix;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.popflix.databinding.ItemMovieBinding;
+
+import java.io.Serializable;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
@@ -49,7 +50,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         
         public void bind(Movie movie) {
             // Set movie title
-            binding.movieTitle.setText(movie.getTitle());
+            if (movie.getTitle() != null) {
+                binding.movieTitle.setText(movie.getTitle());
+            }
             
             // Set movie year and rating
             String year = movie.getYear();
@@ -60,18 +63,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             // Load poster image
             if (movie.getPosterPath() != null && !movie.getPosterPath().isEmpty()) {
                 String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
-                Glide.with(binding.getRoot().getContext())
-                        .load(posterUrl)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .error(R.drawable.ic_launcher_foreground)
-                        .into(binding.moviePoster);
+                if (binding.getRoot().getContext() != null) {
+                    Glide.with(binding.getRoot().getContext())
+                            .load(posterUrl)
+                            .placeholder(R.drawable.ic_launcher_foreground)
+                            .error(R.drawable.ic_launcher_foreground)
+                            .into(binding.moviePoster);
+                }
             }
             
             // Set click listener
             binding.getRoot().setOnClickListener(v -> {
-                Intent intent = new Intent(binding.getRoot().getContext(), DetailsActivity.class);
-                intent.putExtra("movie", movie);
-                binding.getRoot().getContext().startActivity(intent);
+                if (binding.getRoot().getContext() != null) {
+                    Intent intent = new Intent(binding.getRoot().getContext(), DetailsActivity.class);
+                    intent.putExtra("movie", movie);
+                    binding.getRoot().getContext().startActivity(intent);
+                }
             });
         }
     }

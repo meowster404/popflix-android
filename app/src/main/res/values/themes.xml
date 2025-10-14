@@ -17,7 +17,13 @@
 
     <!-- Splash screen theme -->
     <style name="Theme.PopFlix.Splash" parent="Theme.PopFlix">
-        <item name="android:windowBackground">@layout/activity_splash</item>
+        <item name="android:windowBackground">@color/dark_background</item>
         <item name="android:statusBarColor">@color/dark_background</item>
+    </style>
+
+    <!-- Full screen theme for video playback -->
+    <style name="Theme.PopFlix.FullScreen" parent="Theme.PopFlix">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 </resources>

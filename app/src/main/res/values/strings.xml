@@ -26,4 +26,6 @@
     <string name="no_movies_in_watchlist">No movies in your watchlist yet</string>
     <string name="watchlist_empty_message">Start adding movies to your watchlist to see them here!</string>
     <string name="logout">Logout</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
 </resources>

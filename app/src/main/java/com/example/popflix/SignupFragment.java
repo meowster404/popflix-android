@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.popflix.databinding.FragmentSignupBinding;
 import com.example.popflix.home.HomeActivity;
-import com.example.popflix.utils.NotificationUtils;
+import com.example.popflix.NotificationUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
