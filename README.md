@@ -150,27 +150,46 @@ app/src/main/java/com/example/popflix/
 - **Performance**: Optimized for smooth scrolling and fast loading
 - **Battery Efficient**: Smart notification scheduling
 
-## 🚨 Troubleshooting
+## 🚨 Known Issues
 
-### Common Issues
+### Current Issues (v1.0)
+The following issues have been identified and are scheduled for resolution in upcoming releases:
 
-**Build Errors**
-- Ensure all dependencies are properly synced
-- Check API key configuration in `.env` file
-- Verify `google-services.json` is present
+1. **Google Sign-In Failures** ❌
+   - **Issue**: Google Sign-In process fails intermittently
+   - **Impact**: Users cannot authenticate with Google accounts
+   - **Workaround**: Use email/password authentication as alternative
+   - **Priority**: High
 
-**Authentication Issues**
-- Check Firebase project configuration
-- Ensure Google Sign-In is enabled in Firebase Console
-- Verify SHA-1 fingerprint for release builds
+2. **Watchlist Crash** ❌
+   - **Issue**: Application crashes when accessing the watchlist screen
+   - **Impact**: Users cannot view or manage their watchlist
+   - **Workaround**: Restart the application and avoid watchlist access
+   - **Priority**: Critical
 
-**API Issues**
-- Verify TMDB API key is valid and has sufficient quota
-- Check network connectivity
-- Review API rate limiting
+3. **Profile Data Persistence** ❌
+   - **Issue**: User profile data is loaded locally and gets deleted on app restart
+   - **Impact**: Users lose profile customizations and preferences
+   - **Workaround**: Reconfigure profile settings after each app launch
+   - **Priority**: High
 
-### Debug Mode
-Enable debug logging by setting `BuildConfig.DEBUG = true` for detailed logging.
+4. **Profile Section Minor Bugs** ❌
+   - **Issue**: Small UI/UX bugs in the user name/profile section
+   - **Impact**: Minor visual inconsistencies in profile display
+   - **Workaround**: None required - functionality is intact
+   - **Priority**: Medium
+
+### Reporting Issues
+If you encounter any of these issues or discover new ones:
+1. Check if it's already listed above
+2. Create a detailed issue report in the repository
+3. Include device information, Android version, and steps to reproduce
+4. Attach screenshots if applicable
+
+### Issue Status Legend
+- ❌ **Open**: Issue identified but not resolved
+- 🔄 **In Progress**: Actively being worked on
+- ✅ **Resolved**: Issue has been fixed
 
 ## 📈 Performance Optimizations
 

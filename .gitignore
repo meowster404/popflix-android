@@ -73,6 +73,22 @@ firestore-debug.log
 .env.test.local
 .env.production.local
 
+# Sensitive data files
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+secrets.properties
+local.properties
+
+# API Keys and Secrets (common patterns)
+api_key.txt
+api_keys.json
+secrets.json
+config.json
+private.json
+
 # IDE files
 .vscode/
 .idea/

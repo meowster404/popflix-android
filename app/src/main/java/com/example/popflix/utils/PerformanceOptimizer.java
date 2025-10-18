@@ -27,7 +27,7 @@ public class PerformanceOptimizer {
         recyclerView.setItemViewCacheSize(20);
         recyclerView.setDrawingCacheEnabled(true);
         recyclerView.setDrawingCacheQuality(android.view.View.DRAWING_CACHE_QUALITY_HIGH);
-        
+    
         // Optimize nested scrolling
         recyclerView.setNestedScrollingEnabled(false);
     }
@@ -111,9 +111,8 @@ public class PerformanceOptimizer {
             .into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                    // Create circular bitmap
-                    Bitmap circularBitmap = ImageManipulationUtil.createCircularBitmap(resource);
-                    imageView.setImageBitmap(circularBitmap);
+                    // Use bitmap directly without circular transformation for simplicity
+                    imageView.setImageBitmap(resource);
                 }
                 
                 @Override

@@ -15,21 +15,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.button.MaterialButton;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.popflix.utils.ImageManipulationUtil;
-import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.popflix.utils.FirebaseUserManager;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private FirebaseUser currentUser;
     private FirebaseUserManager userManager;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("PopFlixPrefs", MODE_PRIVATE);
         userManager = FirebaseUserManager.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         setupToolbar();
         setupProfileInfo();
@@ -233,29 +234,26 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
-                // Use optimized bitmap loading
-                Bitmap optimizedBitmap = ImageManipulationUtil.loadOptimizedBitmap(
-                    this, uri, 400, 400);
-                
-                if (optimizedBitmap != null) {
-                    // Create circular bitmap for better visual appeal
-                    Bitmap circularBitmap = ImageManipulationUtil.createCircularBitmap(optimizedBitmap);
-                    
-                    if (circularBitmap != null) {
-                        ImageView profileImage = findViewById(R.id.profile_image);
-                        profileImage.setImageBitmap(circularBitmap);
-                        
-                        // Save to preferences with compression
-                        saveImageToPreferences(circularBitmap);
-                        
-                        Toast.makeText(this, "Profile picture updated successfully!", Toast.LENGTH_SHORT).show();
-                        
-                        // Clean up original bitmap to free memory
-                        if (optimizedBitmap != circularBitmap && !optimizedBitmap.isRecycled()) {
-                            optimizedBitmap.recycle();
-                        }
-                    } else {
-                        Toast.makeText(this, "Error processing image", Toast.LENGTH_SHORT).show();
+                // Load bitmap with basic decoding
+                Bitmap bitmap = null;
+                try {
+                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                } catch (Exception e) {
+                    Log.e("ProfileActivity", "Error loading bitmap: " + e.getMessage());
+                }
+
+                if (bitmap != null) {
+                    ImageView profileImage = findViewById(R.id.profile_image);
+                    profileImage.setImageBitmap(bitmap);
+
+                    // Save to preferences with compression
+                    saveImageToPreferences(bitmap);
+
+                    Toast.makeText(this, "Profile picture updated successfully!", Toast.LENGTH_SHORT).show();
+
+                    // Clean up bitmap to free memory
+                    if (!bitmap.isRecycled()) {
+                        bitmap.recycle();
                     }
                 } else {
                     Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();

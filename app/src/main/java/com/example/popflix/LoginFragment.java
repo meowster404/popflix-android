@@ -1,11 +1,13 @@
 package com.example.popflix;
 
-import android.util.Log;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +17,15 @@ import androidx.fragment.app.Fragment;
 import com.example.popflix.databinding.FragmentLoginBinding;
 import com.example.popflix.home.HomeActivity;
 import com.example.popflix.NotificationUtils;
+import com.example.popflix.utils.FirebaseUserManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.example.popflix.utils.FirebaseUserManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -31,28 +35,40 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * LoginFragment handles user authentication including:
+ * - Email/password login
+ * - Google Sign-In integration
+ * - Anonymous login (secret feature)
+ * - Profile picture handling
+ * - Navigation to home screen after successful authentication
+ *
+ * @author PopFlix Team
+ * @version 1.0
+ */
 public class LoginFragment extends Fragment {
 
     // ==================== PROPERTIES AND CONSTANTS ====================
-    // Fragment binding for view access
+
+    /** Fragment binding for view access and data binding */
     private FragmentLoginBinding binding;
 
-    // Firebase authentication instance
+    /** Firebase authentication instance for handling login operations */
     private FirebaseAuth mAuth;
 
-    // Firebase User Manager for consistent data handling
+    /** Firebase User Manager for consistent data handling across the app */
     private FirebaseUserManager userManager;
 
-    // Counter for secret anonymous login trigger
+    /** Counter for secret anonymous login trigger (tap title 5 times) */
     private int secretClickCount = 0;
 
-    // Google Sign-In client for OAuth authentication
+    /** Google Sign-In client for OAuth authentication */
     private GoogleSignInClient googleSignInClient;
 
-    // Request code for Google Sign-In activity result
+    /** Request code for Google Sign-In activity result */
     private static final int RC_SIGN_IN = 9001;
 
-    // Firestore database instance for user data storage
+    /** Firestore database instance for user data storage */
     private FirebaseFirestore db;
 
     // ==================== FRAGMENT LIFECYCLE METHODS ====================
