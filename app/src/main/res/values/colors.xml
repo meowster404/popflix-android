@@ -7,20 +7,69 @@
     <color name="brand_red">#E50914</color>
     <color name="brand_red_dark">#B20710</color>
 
-    <!-- Background Colors -->
+    <!-- 2025 Modern Color Palette -->
+    <color name="primary_purple">#6366F1</color>
+    <color name="primary_purple_dark">#4338CA</color>
+    <color name="accent_cyan">#06B6D4</color>
+    <color name="accent_pink">#EC4899</color>
+    <color name="accent_orange">#F97316</color>
+    <color name="accent_green">#10B981</color>
+
+    <!-- Background Colors - Light theme default -->
+    <color name="background_primary">#FFFFFF</color>
     <color name="dark_background">#121212</color>
-    <color name="card_background">#1E1E1E</color>
-    <color name="input_background">#333333</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_background_dark">#1E1E1E</color>
+    <color name="glass_background">#F8F9FA</color>
+    <color name="glass_background_dark">#2D2D2D</color>
+    <color name="glass_stroke">#E9ECEF</color>
+    <color name="glass_stroke_dark">#404040</color>
+    <color name="input_background">#F8F9FA</color>
+    <color name="input_background_dark">#2D2D2D</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#F1F1F1</color>
-    <color name="text_secondary">#888888</color>
+    <!-- Text Colors - Light theme default -->
+    <color name="text_primary">#212121</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_secondary_dark">#B3B3B3</color>
+    <color name="text_accent">#6366F1</color>
 
-    <!-- Accent Colors -->
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#667EEA</color>
+    <color name="gradient_middle">#764BA2</color>
+    <color name="gradient_end">#F093FB</color>
+
+    <!-- Legacy Colors -->
     <color name="accent_blue">#0066CC</color>
+    <color name="secondary_blue">#2196F3</color>
     <color name="brand_blue">#0066CC</color>
     <color name="brand_green">#4CAF50</color>
     <color name="brand_yellow">#FFD700</color>
     <color name="chip_background">#2D2D2D</color>
     <color name="card_stroke">#333333</color>
+
+    <!-- Kid Mode Colors - Bright and Playful -->
+    <color name="kid_primary">#FF6B6B</color>
+    <color name="kid_primary_dark">#FF5252</color>
+    <color name="kid_secondary">#4ECDC4</color>
+    <color name="kid_accent">#FFE66D</color>
+    <color name="kid_background">#FFF8E1</color>
+    <color name="kid_surface">#FFFFFF</color>
+    <color name="kid_text_primary">#2E2E2E</color>
+    <color name="kid_text_secondary">#666666</color>
+    <color name="kid_button">#FF9800</color>
+    <color name="kid_success">#66BB6A</color>
+    <color name="kid_warning">#FFA726</color>
+    <color name="kid_card_background">#FFFFFF</color>
+    <color name="kid_card_stroke">#FFE0B2</color>
+
+    <!-- Light Theme Colors -->
+    <color name="light_background">#FFFFFF</color>
+    <color name="light_surface">#F5F5F5</color>
+    <color name="light_text_primary">#212121</color>
+    <color name="light_text_secondary">#757575</color>
+    <color name="light_secondary">#E0E0E0</color>
+
+    <!-- Dark Theme Colors (existing) -->
+    <color name="dark_secondary">#424242</color>
 </resources>

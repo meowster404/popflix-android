@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.popflix.databinding.ItemWatchlistMovieBinding;
+import com.example.popflix.utils.ThemeManager;
 import java.util.List;
 
 public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.WatchlistViewHolder> {
@@ -62,19 +63,32 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.Watc
             // Set movie title
             binding.movieTitle.setText(movie.getTitle());
             
-            // Set movie year and rating
+            // Set movie year and rating with star
             String year = movie.getYear();
-            String rating = movie.getFormattedRating();
-            String details = year + " • " + rating;
+            String rating = String.format("%.1f", movie.getVoteAverage());
+            String details = year + " • " + rating + " ⭐";
             binding.movieDetails.setText(details);
+            
+            // Set movie overview
+            if (binding.movieOverview != null && movie.getOverview() != null) {
+                binding.movieOverview.setText(movie.getOverview());
+            }
+            
+            // Apply theme-aware colors
+            ThemeManager themeManager = ThemeManager.getInstance(binding.getRoot().getContext());
+            binding.movieTitle.setTextColor(themeManager.getTextPrimaryColor(binding.getRoot().getContext()));
+            binding.movieDetails.setTextColor(themeManager.getTextSecondaryColor(binding.getRoot().getContext()));
+            if (binding.movieOverview != null) {
+                binding.movieOverview.setTextColor(themeManager.getTextSecondaryColor(binding.getRoot().getContext()));
+            }
             
             // Load poster image
             if (movie.getPosterPath() != null && !movie.getPosterPath().isEmpty()) {
                 String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
                 Glide.with(binding.getRoot().getContext())
                         .load(posterUrl)
-                        .placeholder(R.drawable.ic_launcher_foreground)
-                        .error(R.drawable.ic_launcher_foreground)
+                        .placeholder(R.drawable.ic_profile) // Use a safe placeholder
+                        .error(R.drawable.ic_profile) // Use a safe error image
                         .into(binding.moviePoster);
             }
             
@@ -85,6 +99,7 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.Watc
                 }
             });
             
+            // Remove button click listener only
             binding.removeButton.setOnClickListener(v -> {
                 if (onRemoveClickListener != null) {
                     onRemoveClickListener.onRemoveClick(movie);

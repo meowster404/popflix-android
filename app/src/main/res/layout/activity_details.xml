@@ -7,44 +7,47 @@
     android:background="@color/dark_background"
     android:fitsSystemWindows="true">
 
+    <!-- Layer 1: Poster as Background -->
+    <ImageView
+        android:id="@+id/background_poster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <!-- Layer 2: Blur Effect -->
+    <View
+        android:id="@+id/blur_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/blur_overlay"
+        android:visibility="gone" />
+
+    <!-- Layer 3: Transparent Shade -->
+    <View
+        android:id="@+id/shade_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_scrim"
+        android:visibility="gone" />
+
+    <!-- Layer 4: Content -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:background="@android:color/transparent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/dark_background"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <ImageView
-                android:id="@+id/backdrop_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                tools:src="@tools:sample/backgrounds/scenic" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/gradient_scrim" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -58,85 +61,163 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <TextView
-                android:id="@+id/movie_title"
-                style="@style/TextAppearance.Material3.HeadlineMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/text_primary"
-                android:textStyle="bold"
-                tools:text="Movie Title" />
+            <!-- Movie Poster and Info Section -->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/movie_year"
-                    style="@style/TextAppearance.Material3.BodyLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    tools:text="2024 • "/>
-                <TextView
-                    android:id="@+id/movie_runtime"
-                    style="@style/TextAppearance.Material3.BodyLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    tools:text="2h 30m • "/>
-                <TextView
-                    android:id="@+id/movie_rating"
-                    style="@style/TextAppearance.Material3.BodyLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="4dp"
-                    android:gravity="center"
-                    android:textColor="@color/brand_yellow"
-                    app:drawableStartCompat="@drawable/ic_star"
-                    tools:text="8.5"/>
-            </LinearLayout>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/genre_chips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"/>
-
+            <!-- Action Buttons Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:orientation="horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- Movie Poster -->
+                <ImageView
+                    android:id="@+id/movie_poster"
+                    android:layout_width="150dp"
+                    android:layout_height="225dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/card_background"
+                    android:padding="4dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <!-- Movie Title -->
+                <TextView
+                    android:id="@+id/movie_title"
+                    style="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    tools:text="Movie Title" />
+
+                <!-- Movie Year, Runtime, Rating -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/movie_year"
+                        style="@style/TextAppearance.Material3.BodyLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_secondary"
+                        tools:text="2024 • " />
+
+                    <TextView
+                        android:id="@+id/movie_runtime"
+                        style="@style/TextAppearance.Material3.BodyLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_secondary"
+                        tools:text="2h 30m • " />
+
+                    <TextView
+                        android:id="@+id/movie_rating"
+                        style="@style/TextAppearance.Material3.BodyLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/brand_yellow"
+                        tools:text="8.5/10" />
+                </LinearLayout>
+
+                <!-- Genre Chips -->
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/genre_chips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Expandable Plot Summary -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeColor="@color/card_stroke"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            style="@style/TextAppearance.Material3.TitleMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="Plot Summary"
+                            android:textColor="@color/text_primary"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/movie_plot"
+                            style="@style/TextAppearance.Material3.BodyLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingMultiplier="1.3"
+                            android:maxLines="3"
+                            android:textColor="@color/text_primary"
+                            tools:text="This is a long plot summary of the movie that describes what happens. It can span multiple lines and gives the user an idea of the story." />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/expand_plot_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:text="Show More"
+                            android:textColor="@color/primary_purple"
+                            app:cornerRadius="16dp"
+                            app:icon="@drawable/ic_expand_more"
+                            app:iconGravity="textStart" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/watch_trailer_button"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="12dp"
-                    android:backgroundTint="@color/brand_red"
-                    android:text="@string/watch_trailer"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_modern"
+                    android:text="Watch Trailer"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
                     app:cornerRadius="28dp"
                     app:icon="@drawable/ic_play"
                     app:iconGravity="textStart"
-                    app:iconPadding="8dp" />
+                    app:iconPadding="8dp"
+                    app:iconTint="@android:color/white" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/add_to_watchlist_button"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginStart="6dp"
-                    android:backgroundTint="@color/brand_blue"
-                    android:text="@string/add_to_watchlist"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/primary_purple"
+                    android:text="Watchlist"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
                     app:cornerRadius="28dp"
                     app:icon="@drawable/ic_add"
                     app:iconGravity="textStart"
@@ -146,22 +227,23 @@
                     android:id="@+id/add_to_favorites_button"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="8dp"
                     android:backgroundTint="@android:color/transparent"
                     app:cornerRadius="28dp"
-                    app:strokeColor="@color/text_secondary"
+                    app:strokeColor="@color/primary_purple"
                     app:strokeWidth="2dp"
                     app:icon="@drawable/ic_heart_outline"
                     app:iconSize="24dp"
-                    app:iconTint="@color/text_secondary" />
+                    app:iconTint="@color/primary_purple" />
 
             </LinearLayout>
 
+            <!-- Reviews Section -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:strokeColor="@color/card_stroke"
                 app:strokeWidth="1dp">
@@ -173,84 +255,197 @@
                     android:padding="20dp">
 
                     <TextView
-                        android:id="@+id/reviews_title"
                         style="@style/TextAppearance.Material3.TitleLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Reviews &amp; Ratings"
                         android:textColor="@color/text_primary"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/reviews_count"
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:text="0 reviews"
-                        android:textColor="@color/text_secondary" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/reviews_recycler_view"
+                    <!-- Add Review Section -->
+                    <LinearLayout
+                        android:id="@+id/add_review_section"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        tools:itemCount="3"
-                        tools:listitem="@layout/item_review" />
+                        android:orientation="vertical"
+                        android:layout_marginBottom="24dp">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/add_review_button"
+                        <TextView
+                            style="@style/TextAppearance.Material3.TitleMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Write a Review"
+                            android:textColor="@color/text_primary" />
+
+                        <!-- Modern Rating Buttons - Glass morphism effect -->
+                        <LinearLayout
+                            android:id="@+id/rating_buttons_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:padding="8dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/rating_btn_1"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/glass_button_unselected"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="1"
+                                android:textColor="@color/brand_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@android:color/transparent" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/rating_btn_2"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/glass_button_unselected"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="2"
+                                android:textColor="@color/brand_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@android:color/transparent" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/rating_btn_3"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/glass_button_unselected"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="3"
+                                android:textColor="@color/brand_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@android:color/transparent" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/rating_btn_4"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/glass_button_unselected"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="4"
+                                android:textColor="@color/brand_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@android:color/transparent" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/rating_btn_5"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:layout_margin="4dp"
+                                android:background="@drawable/glass_button_unselected"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"
+                                android:padding="0dp"
+                                android:text="5"
+                                android:textColor="@color/brand_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@android:color/transparent" />
+
+                        </LinearLayout>
+
+                        <!-- Review Text Input -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:hint="Share your thoughts about this movie..."
+                            app:boxBackgroundColor="@color/input_background"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxStrokeColor="@color/primary_purple"
+                            app:hintTextColor="@color/text_secondary">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/review_text_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="textMultiLine"
+                                android:maxLines="4"
+                                android:minLines="3"
+                                android:textColor="@color/text_primary"
+                                android:textColorHint="@color/text_secondary" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Submit Review Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/submit_review_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/btn_modern"
+                            android:text="Submit Review"
+                            android:textColor="@android:color/white"
+                            app:cornerRadius="24dp" />
+
+                    </LinearLayout>
+
+                    <!-- Existing Reviews Section -->
+                    <LinearLayout
+                        android:id="@+id/reviews_section"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:backgroundTint="@color/brand_green"
-                        android:text="Add Review"
-                        android:textColor="@android:color/white"
-                        app:cornerRadius="24dp"
-                        app:icon="@drawable/ic_add"
-                        app:iconGravity="textStart"
-                        app:iconPadding="8dp" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:strokeColor="@color/card_stroke"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:text="Plot Summary"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/movie_plot"
-                        style="@style/TextAppearance.Material3.BodyLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/text_primary"
-                        android:lineSpacingMultiplier="1.3"
-                        android:justificationMode="inter_word"
-                        tools:text="This is a long plot summary of the movie that describes what happens. It can span multiple lines and gives the user an idea of the story." />
+                        <TextView
+                            android:id="@+id/reviews_title"
+                            style="@style/TextAppearance.Material3.TitleMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="User Reviews"
+                            android:textColor="@color/text_primary" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/reviews_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/item_review" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

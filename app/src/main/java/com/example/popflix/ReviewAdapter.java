@@ -3,7 +3,6 @@ package com.example.popflix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,21 +38,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     static class ReviewViewHolder extends RecyclerView.ViewHolder {
         private TextView userNameText;
         private TextView reviewDateText;
-        private RatingBar ratingBar;
+        private TextView ratingText;
         private TextView reviewContentText;
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
             userNameText = itemView.findViewById(R.id.review_user_name);
             reviewDateText = itemView.findViewById(R.id.review_date);
-            ratingBar = itemView.findViewById(R.id.review_rating);
+            ratingText = itemView.findViewById(R.id.review_rating);
             reviewContentText = itemView.findViewById(R.id.review_content);
         }
 
         public void bind(Review review) {
             userNameText.setText(review.getUserName());
             reviewDateText.setText(review.getFormattedDate());
-            ratingBar.setRating(review.getRating());
+            ratingText.setText(String.format("%.1f/5", review.getRating()));
             reviewContentText.setText(review.getContent());
         }
     }

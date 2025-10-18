@@ -23,6 +23,12 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
 
+        <item
+            android:id="@+id/nav_kid_mode"
+            android:icon="@drawable/ic_child"
+            android:title="Kid Mode"
+            android:checkable="true" />
+
     </group>
 
     <item android:title="">

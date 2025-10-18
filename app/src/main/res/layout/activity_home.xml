@@ -21,8 +21,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/app_name"
-                app:titleTextColor="@color/brand_red" />
+                android:background="@color/dark_background">
+
+                <include layout="@layout/custom_toolbar" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -64,7 +67,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Popular Movies"
                     android:textColor="@color/text_primary"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_popular"
@@ -90,7 +93,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Top Rated"
                     android:textColor="@color/text_primary"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_top_rated"
@@ -116,10 +119,140 @@
                     android:layout_marginBottom="8dp"
                     android:text="Upcoming Movies"
                     android:textColor="@color/text_primary"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_upcoming"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_movie" />
+
+                <!-- Popular for Kids Section -->
+                <TextView
+                    android:id="@+id/text_kids_title"
+                    style="@style/TextAppearance.Material3.TitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Popular for Kids"
+                    android:textColor="@color/text_primary"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_kids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_movie" />
+
+                <!-- Trending Now Section -->
+                <TextView
+                    android:id="@+id/text_trending_title"
+                    style="@style/TextAppearance.Material3.TitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Trending Now"
+                    android:textColor="@color/text_primary"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_trending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_movie" />
+
+                <!-- Latest Releases Section -->
+                <TextView
+                    android:id="@+id/text_latest_title"
+                    style="@style/TextAppearance.Material3.TitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Latest Releases"
+                    android:textColor="@color/text_primary"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_latest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_movie" />
+
+                <!-- Action & Adventure Section -->
+                <TextView
+                    android:id="@+id/text_action_title"
+                    style="@style/TextAppearance.Material3.TitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Action &amp; Adventure"
+                    android:textColor="@color/text_primary"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_movie" />
+
+                <!-- Comedy Movies Section -->
+                <TextView
+                    android:id="@+id/text_comedy_title"
+                    style="@style/TextAppearance.Material3.TitleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Comedy Movies"
+                    android:textColor="@color/text_primary"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_comedy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"

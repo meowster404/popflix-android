@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.popflix.databinding.ItemMovieBinding;
+import com.example.popflix.utils.PerformanceOptimizer;
+import com.example.popflix.utils.ThemeManager;
 
 import java.io.Serializable;
 import java.util.List;
@@ -37,49 +39,80 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     
     @Override
     public int getItemCount() {
-        return movies.size();
+        return movies != null ? movies.size() : 0;
     }
     
-    class MovieViewHolder extends RecyclerView.ViewHolder {
-        private ItemMovieBinding binding;
+    // Optimize data updates
+    public void updateMovies(List<Movie> newMovies) {
+        this.movies = newMovies;
+        notifyDataSetChanged();
+    }
+    
+    // Add method to clear data and free memory
+    public void clearData() {
+        if (movies != null) {
+            movies.clear();
+            notifyDataSetChanged();
+        }
+    }
+    
+    static class MovieViewHolder extends RecyclerView.ViewHolder {
+        private final ItemMovieBinding binding;
         
-        public MovieViewHolder(@NonNull ItemMovieBinding binding) {
+        public MovieViewHolder(ItemMovieBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
         
         public void bind(Movie movie) {
-            // Set movie title
-            if (movie.getTitle() != null) {
-                binding.movieTitle.setText(movie.getTitle());
-            }
+            binding.movieTitle.setText(movie.getTitle());
             
-            // Set movie year and rating
+            // Set movie details (year and rating)
             String year = movie.getYear();
-            String rating = movie.getFormattedRating();
+            String rating = String.format("%.1f", movie.getVoteAverage());
             String details = year + " • " + rating;
-            binding.movieDetails.setText(details);
-            
-            // Load poster image
-            if (movie.getPosterPath() != null && !movie.getPosterPath().isEmpty()) {
-                String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
-                if (binding.getRoot().getContext() != null) {
-                    Glide.with(binding.getRoot().getContext())
-                            .load(posterUrl)
-                            .placeholder(R.drawable.ic_launcher_foreground)
-                            .error(R.drawable.ic_launcher_foreground)
-                            .into(binding.moviePoster);
-                }
+            if (binding.movieDetails != null) {
+                binding.movieDetails.setText(details);
             }
             
-            // Set click listener
+            // Apply theme-aware colors
+            ThemeManager themeManager = ThemeManager.getInstance(binding.getRoot().getContext());
+            
+            // Set card background color based on theme
+            binding.getRoot().setCardBackgroundColor(themeManager.getCardBackgroundColor(binding.getRoot().getContext()));
+            
+            // Set text colors based on theme
+            binding.movieTitle.setTextColor(themeManager.getTextPrimaryColor(binding.getRoot().getContext()));
+            if (binding.movieDetails != null) {
+                binding.movieDetails.setTextColor(themeManager.getTextSecondaryColor(binding.getRoot().getContext()));
+            }
+            
+            // Use optimized image loading
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
+            PerformanceOptimizer.loadMoviePoster(
+                binding.getRoot().getContext(), 
+                posterUrl, 
+                binding.moviePoster
+            );
+            
+            // Set click listener with optimized intent creation
             binding.getRoot().setOnClickListener(v -> {
-                if (binding.getRoot().getContext() != null) {
-                    Intent intent = new Intent(binding.getRoot().getContext(), DetailsActivity.class);
-                    intent.putExtra("movie", movie);
-                    binding.getRoot().getContext().startActivity(intent);
-                }
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                intent.putExtra("movie", (Serializable) movie);
+                v.getContext().startActivity(intent);
             });
         }
+        
+        // Clean up resources when view is recycled
+        public void cleanup() {
+            binding.moviePoster.setImageDrawable(null);
+        }
+    }
+    
+    @Override
+    public void onViewRecycled(@NonNull MovieViewHolder holder) {
+        super.onViewRecycled(holder);
+        // Clean up resources to prevent memory leaks
+        holder.cleanup();
     }
 }

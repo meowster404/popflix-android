@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RatingBar style for reviews -->
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressTint">@color/brand_yellow</item>
+        <item name="android:progressBackgroundTint">@color/text_secondary</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:maxHeight">24dp</item>
+    </style>
+</resources>

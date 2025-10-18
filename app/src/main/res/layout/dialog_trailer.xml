@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/glass_card"
+    android:padding="16dp">
+
+    <!-- Modern Close Button at Top Right -->
+    <ImageButton
+        android:id="@+id/close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/glass_card"
+        android:src="@drawable/ic_close_modern"
+        android:tint="@android:color/white"
+        android:scaleType="centerInside"
+        android:padding="8dp" />
+
+    <!-- Trailer WebView (Smaller) -->
+    <WebView
+        android:id="@+id/trailer_webview"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/close_button"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/black" />
+
+    <!-- Loading Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+</RelativeLayout>

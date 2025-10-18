@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kid Mode Theme -->
+    <style name="Theme.PopFlix.Kid" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/kid_primary</item>
+        <item name="colorPrimaryVariant">@color/kid_primary_dark</item>
+        <item name="colorSecondary">@color/kid_secondary</item>
+        <item name="colorSecondaryVariant">@color/kid_accent</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/kid_text_primary</item>
+        <item name="colorSurface">@color/kid_surface</item>
+        <item name="colorOnSurface">@color/kid_text_primary</item>
+        <item name="android:colorBackground">@color/kid_background</item>
+        <item name="colorOnBackground">@color/kid_text_primary</item>
+        <item name="android:statusBarColor">@color/kid_primary</item>
+        <item name="android:navigationBarColor">@color/kid_primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <!-- Light Theme -->
+    <style name="Theme.PopFlix.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_purple</item>
+        <item name="colorPrimaryVariant">@color/primary_purple_dark</item>
+        <item name="colorSecondary">@color/accent_cyan</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/light_text_primary</item>
+        <item name="colorSurface">@color/light_surface</item>
+        <item name="colorOnSurface">@color/light_text_primary</item>
+        <item name="android:colorBackground">@color/light_background</item>
+        <item name="colorOnBackground">@color/light_text_primary</item>
+        <item name="android:statusBarColor">@color/light_background</item>
+        <item name="android:navigationBarColor">@color/light_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- Kid Mode Button Style -->
+    <style name="KidModeButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/kid_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <!-- Kid Mode Card Style -->
+    <style name="KidModeCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/kid_card_background</item>
+        <item name="strokeColor">@color/kid_card_stroke</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+    <!-- Kid Mode Text Styles -->
+    <style name="KidModeTitle" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/kid_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="KidModeSubtitle" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/kid_text_secondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

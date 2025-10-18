@@ -5,65 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/card_background"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="?attr/cardBackgroundColor">
 
-        <ImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:background="@color/card_background"
-            tools:src="@tools:sample/backgrounds/scenic" />
+        <!-- Movie Poster -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/remove_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_remove"
-            app:backgroundTint="@color/brand_red"
-            app:fabSize="mini"
-            app:tint="@color/white" />
+            <ImageView
+                android:id="@+id/movie_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="?attr/cardBackgroundColor"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
+        </androidx.cardview.widget.CardView>
+
+        <!-- Movie Info Section -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/movie_poster"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/movie_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="8dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="Movie Title" />
+                tools:text="The Conjuring: Last Rites" />
 
             <TextView
                 android:id="@+id/movie_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="12dp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="14sp"
+                tools:text="2024 • 7.8 ⭐" />
+
+            <TextView
+                android:id="@+id/movie_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="12sp"
-                tools:text="2024 • 8.5" />
+                android:alpha="0.8"
+                tools:text="A horror movie about supernatural events..." />
+
+            <!-- Remove Button Only -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remove_button"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Remove"
+                android:textSize="12sp"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_remove"
+                app:iconSize="16dp"
+                app:strokeColor="@color/brand_red"
+                android:textColor="@color/brand_red"
+                app:iconTint="@color/brand_red" />
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
